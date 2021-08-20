@@ -26,7 +26,7 @@ public class AnimationManager : MonoBehaviour
     public GameObject loginPanel;
     public TextMeshProUGUI loadingPanelText;
 
-    public GameObject rulesPanel;
+    public GameObject profilePanel;
 
     private float duration = 0.5f;
     public bool menuAnimSwitch;
@@ -88,7 +88,7 @@ public class AnimationManager : MonoBehaviour
         //gamePlay.rulesButton.SetActive(false);
         //buttonFadePanel.SetActive(true);
         //FadeAudioButtonButtonText();
-        LeanTween.moveLocalY(rulesPanel, 0, duration).setEaseInOutCubic();
+        LeanTween.moveLocalY(profilePanel, 0, duration).setEaseInOutCubic();
         LeanTween.moveLocalY(textPanel, 1200, duration).setEaseInOutCubic();
         //LeanTween.moveLocalX(gamePlay.rulesButton, 1200, 1).setEaseInOutCubic();
         //LeanTween.moveLocalX(gamePlay.rulesText, 1230, 1).setEaseInOutCubic();
@@ -99,7 +99,7 @@ public class AnimationManager : MonoBehaviour
 
         //buttonFadePanel.SetActive(false);
         LeanTween.moveLocalY(textPanel, 0, duration).setEaseInOutCubic();
-        LeanTween.moveLocalY(rulesPanel, 1200, duration).setEaseInOutCubic();
+        LeanTween.moveLocalY(profilePanel, 1200, duration).setEaseInOutCubic();
         //LeanTween.moveLocalX(gamePlay.rulesButton, 900, 1).setEaseInOutCubic();
         //LeanTween.moveLocalX(gamePlay.rulesText, 930, 1).setEaseInOutCubic();
     }

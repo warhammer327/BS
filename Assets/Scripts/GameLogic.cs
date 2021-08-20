@@ -35,7 +35,7 @@ public class GameLogic : MonoBehaviour
     public TextMeshProUGUI SessionScore;
     public int curScore;
     public int timeBonus;
-
+    public int allTimeHighScore;
     public bool showWatchAdButton;
     public string answerWhenFail;
 
@@ -85,6 +85,7 @@ public class GameLogic : MonoBehaviour
         {
             wrongPressSound.Play();
             gamePlay.chanceLeft++;
+
             //Debug.Log(gamePlay.chanceLeft);
             if (gamePlay.chanceLeft >= 5)
             {
@@ -95,6 +96,7 @@ public class GameLogic : MonoBehaviour
                 int index = gamePlay.chanceLeft - 1;
                 healthBar[index].SetActive(false);
             }
+            
         }
     }
 
@@ -102,6 +104,14 @@ public class GameLogic : MonoBehaviour
     {
         gamePlay.heartBeatSound.Stop();
         playfabManager.SendToLeaderboard((curScore * 10) + timeBonus);
+
+        allTimeHighScore = PlayerPrefs.GetInt("allTimeHighScore");
+        if(allTimeHighScore < gamePlay.scoreCard)
+        {
+            PlayerPrefs.SetInt("allTimeHighScore",(curScore * 10) + timeBonus);
+            playfabManager.SendToAllTimeLeaderboard((curScore * 10) + timeBonus);
+        }
+        
         if (!gamePlay.backToMenuButton)
         {
             SessionScore.text = "You scored " + ((curScore * 10) + timeBonus).ToString();

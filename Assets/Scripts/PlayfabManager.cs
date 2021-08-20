@@ -50,11 +50,34 @@ public class PlayfabManager : MonoBehaviour
     public TextMeshProUGUI fifthPosName;
     public TextMeshProUGUI fifthPosPoint;
 
-    public string[] namePlayer = { "waiting", "waiting", "waiting", "waiting", "waiting" };
+    public TextMeshProUGUI firstPosOnAllTimeLeaderboard;
+    public TextMeshProUGUI firstPosNameOnAllTimeLeaderboard;
+    public TextMeshProUGUI firstPosPointOnAllTimeLeaderboard;
 
+    public TextMeshProUGUI secondPosOnAllTimeLeaderboard;
+    public TextMeshProUGUI secondPosNameOnAllTimeLeaderboard;
+    public TextMeshProUGUI secondPosPointOnAllTimeLeaderboard;
+
+    public TextMeshProUGUI thirdPosOnAllTimeLeaderboard;
+    public TextMeshProUGUI thirdPosNameOnAllTimeLeaderboard;
+    public TextMeshProUGUI thirdPosPointOnAllTimeLeaderboard;
+
+    public TextMeshProUGUI fourthPosOnAllTimeLeaderboard;
+    public TextMeshProUGUI fourthPosNameOnAllTimeLeaderboard;
+    public TextMeshProUGUI fourthPosPointOnAllTimeLeaderboard;
+
+    public TextMeshProUGUI fifthPosOnAllTimeLeaderboard;
+    public TextMeshProUGUI fifthPosNameOnAllTimeLeaderboard;
+    public TextMeshProUGUI fifthPosPointOnAllTimeLeaderboard;
+
+    public string[] namePlayer = { "waiting", "waiting", "waiting", "waiting", "waiting" };
+    public string[] namePlayerOnAllTimeLeaderboard = { "waiting", "waiting", "waiting", "waiting", "waiting" };
 
     public int[] pointPlayer = { -1, -1, -1, -1, -1 };
     public int[] tablePos = { -1, -1, -1, -1, -1 };
+
+    public int[] pointPlayerOnAllTimeLeaderboard = { -1, -1, -1, -1, -1 };
+    public int[] tablePosOnAllTimeLeaderboard = { -1, -1, -1, -1, -1 };
 
     public string[] playfabIDs;
 
@@ -168,18 +191,11 @@ public class PlayfabManager : MonoBehaviour
         PlayFabClientAPI.UpdatePlayerStatistics(request, OnLeaderboardUpdate, OnError);
         //Debug.Log("SEnt to leaderboard");
     }
-
-
-    void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result)
-    {
-        StartCoroutine(DelayResultTextOnRegistrationSuccess("Congrats for registering", loginText));
-
-    }
-
     private void OnLeaderboardUpdate(UpdatePlayerStatisticsResult result)
     {
 
     }
+
 
     public void GetLeaderboardAroundPlayer()
     {
@@ -208,6 +224,7 @@ public class PlayfabManager : MonoBehaviour
     {
         if (isInternet)
         {
+            ChangeTextColorToWhite();
             int index = 0;
             int curPlayerIndex = 0;
             foreach (var item in result.Leaderboard)
@@ -264,17 +281,18 @@ public class PlayfabManager : MonoBehaviour
             else if (curPlayerIndex == 3)
             {
 
-                fifthPos.color = Color.yellow;
-                fifthPosName.color = Color.yellow;
-                fifthPosPoint.color = Color.yellow;
+                fourthPos.color = Color.yellow;
+                fourthPosName.color = Color.yellow;
+                fourthPosPoint.color = Color.yellow;
             }
             else if (curPlayerIndex == 4)
             {
 
-                firstPos.color = Color.yellow;
-                firstPosName.color = Color.yellow;
-                firstPosPoint.color = Color.yellow;
+                fifthPos.color = Color.yellow;
+                fifthPosName.color = Color.yellow;
+                fifthPosPoint.color = Color.yellow;
             }
+            gamePlay.leaderboardHeader.text = "leaderboard -  Current Week";
         }
         else
         {
@@ -446,6 +464,11 @@ public class PlayfabManager : MonoBehaviour
 
     }
 
+    void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result)
+    {
+        StartCoroutine(DelayResultTextOnRegistrationSuccess("Congrats for registering", loginText));
+
+    }
     IEnumerator DelayResultTextOnDataSendSuccess(string str, TextMeshProUGUI textUIElement)
     {
         textUIElement.text = "";
@@ -499,4 +522,161 @@ public class PlayfabManager : MonoBehaviour
             return false;
         }
     }
+
+    /*
+    #################################################################################################
+    #################################################################################################
+    ###########From here, release 1.1.0 starts. Above this comment everything works so far.##########
+    #################################################################################################
+    #################################################################################################
+    */
+
+    public void SendToAllTimeLeaderboard(int score)
+    {
+
+        var request = new UpdatePlayerStatisticsRequest
+        {
+            Statistics = new List<StatisticUpdate>{
+               new StatisticUpdate {
+                   StatisticName = "AllTimeLeaderBoard",
+                   Value = score
+               }
+           }
+        };
+        PlayFabClientAPI.UpdatePlayerStatistics(request, OnAllTimeLeaderboardUpdate, OnError);
+        //Debug.Log("SEnt to leaderboard");
+    }
+    private void OnAllTimeLeaderboardUpdate(UpdatePlayerStatisticsResult result)
+    {
+
+    }
+
+    public void GetAllTimeLeaderboardAroundPlayer()
+    {
+        firstPosName.text = "Loading...";
+        firstPosPoint.text = pointPlayer[0].ToString();
+        secondPosName.text = "Loading...";
+        secondPosPoint.text = pointPlayer[0].ToString();
+        thirdPosName.text = "Loading...";
+        thirdPosPoint.text = pointPlayer[0].ToString();
+        fourthPosName.text = "Loading...";
+        fourthPosPoint.text = pointPlayer[0].ToString();
+        fifthPosName.text = "Loading...";
+        fifthPosPoint.text = pointPlayer[0].ToString();
+        //res = "Try a few moments later for your result";
+        var request = new GetLeaderboardAroundPlayerRequest
+        {
+            StatisticName = "AllTimeLeaderBoard",
+            MaxResultsCount = 5,
+            PlayFabId = playfabID
+        };
+        PlayFabClientAPI.GetLeaderboardAroundPlayer(request, OnAllTimeLeaderboardAroundPlayerGet, OnError);
+
+    }
+
+    private void OnAllTimeLeaderboardAroundPlayerGet(GetLeaderboardAroundPlayerResult result)
+    {
+        if (isInternet)
+        {
+            ChangeTextColorToWhite();
+            int index = 0;
+            int curPlayerIndex = 0;
+            foreach (var item in result.Leaderboard)
+            {
+                if (item.PlayFabId == playfabID)
+                {
+                    curPlayerIndex = index;
+                }
+                tablePos[index] = item.Position + 1;
+                namePlayer[index] = item.DisplayName;
+                pointPlayer[index++] = item.StatValue;
+            }
+            index = 0;
+            firstPos.text = tablePos[index].ToString();
+            firstPosName.text = namePlayer[index];
+            firstPosPoint.text = pointPlayer[index++].ToString();
+
+            secondPos.text = tablePos[index].ToString();
+            secondPosName.text = namePlayer[index];
+            secondPosPoint.text = pointPlayer[index++].ToString();
+
+            thirdPos.text = tablePos[index].ToString();
+            thirdPosName.text = namePlayer[index];
+            thirdPosPoint.text = pointPlayer[index++].ToString();
+
+            fourthPos.text = tablePos[index].ToString();
+            fourthPosName.text = namePlayer[index];
+            fourthPosPoint.text = pointPlayer[index++].ToString();
+
+            fifthPos.text = tablePos[index].ToString();
+            fifthPosName.text = namePlayer[index];
+            fifthPosPoint.text = pointPlayer[index++].ToString();
+
+            if (curPlayerIndex == 0)
+            {
+                Debug.Log("I'm here 0");
+                firstPos.color = Color.yellow;
+                firstPosName.color = Color.yellow;
+                firstPosPoint.color = Color.yellow;
+            }
+            else if (curPlayerIndex == 1)
+            {
+                Debug.Log("I'm here 1");
+                secondPos.color = Color.yellow;
+                secondPosName.color = Color.yellow;
+                secondPosPoint.color = Color.yellow;
+            }
+            else if (curPlayerIndex == 2)
+            {
+                Debug.Log("I'm here 2");
+                thirdPos.color = Color.yellow;
+                thirdPosName.color = Color.yellow;
+                thirdPosPoint.color = Color.yellow;
+            }
+            else if (curPlayerIndex == 3)
+            {
+                Debug.Log("I'm here 3");
+                fourthPos.color = Color.yellow;
+                fourthPosName.color = Color.yellow;
+                fourthPosPoint.color = Color.yellow;
+            }
+            else if (curPlayerIndex == 4)
+            {
+                Debug.Log("I'm here 4");
+                fifthPos.color = Color.yellow;
+                fifthPosName.color = Color.yellow;
+                fifthPosPoint.color = Color.yellow;
+            }
+            gamePlay.leaderboardHeader.text = "leaderboard -  All Time";
+        }
+        else
+        {
+            //Debug.Log("Offline");
+            SSTools.ShowMessage("Not connected to server", SSTools.Position.bottom, SSTools.Time.threeSecond);
+        }
+    }
+
+    private void ChangeTextColorToWhite()
+    {
+        firstPos.color = Color.white;
+        firstPosName.color = Color.white;
+        firstPosPoint.color = Color.white;
+
+        secondPos.color = Color.white;
+        secondPosName.color = Color.white;
+        secondPosPoint.color = Color.white;
+
+        thirdPos.color = Color.white;
+        thirdPosName.color = Color.white;
+        thirdPosPoint.color = Color.white;
+
+        fourthPos.color = Color.white;
+        fourthPosName.color = Color.white;
+        fourthPosPoint.color = Color.white;
+
+        fifthPos.color = Color.white;
+        fifthPosName.color = Color.white;
+        fifthPosPoint.color = Color.white;
+    }
+
 }

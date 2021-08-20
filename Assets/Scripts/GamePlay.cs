@@ -34,6 +34,7 @@ public class GamePlay : MonoBehaviour
     public TextMeshProUGUI enterValidNumerText;
     public TextMeshProUGUI registerNumberButtonText;
     public TextMeshProUGUI registerNumberPanelMessage;
+    public TextMeshProUGUI leaderboardHeader;
 
 
     private bool isHeartBeatOn = false;
@@ -57,6 +58,8 @@ public class GamePlay : MonoBehaviour
     public bool backToMenuButton;
 
     private bool quoteRunning;
+
+    private bool isOnWeeklyLeaderboard;
 
     private void Awake()
     {
@@ -101,6 +104,7 @@ public class GamePlay : MonoBehaviour
             randomArrayForQuotes[i] = randomArrayForQuotes[swtch];
             randomArrayForQuotes[swtch] = tmp;
         }
+        isOnWeeklyLeaderboard = true;
     }
 
     public void StartButton()
@@ -391,6 +395,21 @@ public class GamePlay : MonoBehaviour
         curVolBackground = newVol;
     }
 
+    public void SwitchLeaderboard()
+    {
+        if(isOnWeeklyLeaderboard)
+        {
+            isOnWeeklyLeaderboard = false;
+            playfab.GetAllTimeLeaderboardAroundPlayer();
+            
+        }
+        else if(!isOnWeeklyLeaderboard)
+        {
+            leaderboardHeader.text = "leaderboard -  All Time";
+            playfab.GetLeaderboardAroundPlayer();
+            isOnWeeklyLeaderboard = true;   
+        }
+    }
     public void ChangeVolEffect(float newVol)
     {
         curVolEffect = newVol;
