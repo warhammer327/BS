@@ -141,19 +141,9 @@ public class GameLogic : MonoBehaviour
     }
     IEnumerator ColorChangeWinningMessage(string str, TextMeshProUGUI textOnWinning)
     {
-        textOnWinning.text = "";
-        foreach (var letter in str)
-        {
-            textOnWinning.text += letter;
-            yield return new WaitForSeconds(0.05f);
-            textOnWinning.color = Color.red;
-            yield return new WaitForSeconds(0.05f);
-            textOnWinning.color = Color.green;
-            yield return new WaitForSeconds(0.05f);
-            textOnWinning.color = Color.blue;
-            yield return new WaitForSeconds(0.05f);
-            textOnWinning.color = Color.yellow;
-        }
+        textOnWinning.text = str;   
+        textOnWinning.color = Color.yellow;
+        yield return new WaitForSeconds(0.05f);
     }
 
 
