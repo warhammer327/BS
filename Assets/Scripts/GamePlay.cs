@@ -101,9 +101,6 @@ public class GamePlay : MonoBehaviour
             randomArrayForQuotes[i] = randomArrayForQuotes[swtch];
             randomArrayForQuotes[swtch] = tmp;
         }
-
-        
-
     }
 
     public void StartButton()

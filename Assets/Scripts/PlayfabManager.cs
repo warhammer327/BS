@@ -131,7 +131,7 @@ public class PlayfabManager : MonoBehaviour
         }
 
     }
-  
+
     void OnError(PlayFabError error)
     {
         //Debug.Log("Error creation account");
@@ -297,7 +297,7 @@ public class PlayfabManager : MonoBehaviour
         string method;
         var rxGeneral = new Regex(@"01[3456789][0-9]{8}", RegexOptions.Compiled);
         var rxRocketOnly = new Regex(@"01[3456789][0-9]{9}", RegexOptions.Compiled);
-        
+
         Toggle toggle = togglePayment.ActiveToggles().FirstOrDefault();
         //Debug.Log(toggle.name + " _ " + toggle.GetComponentInChildren<Text>().text);
         bool isNumberGood = false;
@@ -316,19 +316,19 @@ public class PlayfabManager : MonoBehaviour
         }
 
 
-        
-        if(rxRocketOnly.IsMatch(number) && toggle.name=="Rocket" && number.Length==12)
+
+        if (rxRocketOnly.IsMatch(number) && toggle.name == "Rocket" && number.Length == 12)
         {
             //Debug.Log("Rocket Good");
             isNumberGood = true;
         }
-        else if(rxGeneral.IsMatch(number) && number.Length==11)
+        else if (rxGeneral.IsMatch(number) && number.Length == 11)
         {
             //Debug.Log("General Good");
             isNumberGood = true;
         }
-       
-         if (usernameSubmit.text == "" || usernameSubmit.text == null)
+
+        if (usernameSubmit.text == "" || usernameSubmit.text == null)
         {
             loginText.text = "Enter a valid user name";
             return;
@@ -357,7 +357,7 @@ public class PlayfabManager : MonoBehaviour
             return;
         }
 
-       
+
 
     }
 
@@ -386,13 +386,13 @@ public class PlayfabManager : MonoBehaviour
         }
 
 
-        
-        if(rxRocketOnly.IsMatch(number) && toggle.name=="Rocket" && number.Length==12)
+
+        if (rxRocketOnly.IsMatch(number) && toggle.name == "Rocket" && number.Length == 12)
         {
             //Debug.Log("Rocket Good");
             isNumberGood = true;
         }
-        else if(rxGeneral.IsMatch(number) && number.Length==11)
+        else if (rxGeneral.IsMatch(number) && number.Length == 11)
         {
             //Debug.Log("General Good");
             isNumberGood = true;
