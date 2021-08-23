@@ -12,6 +12,7 @@ using System.Collections;
 using System.Linq;
 using UnityEditor.UIElements;
 using System.Text.RegularExpressions;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayfabManager : MonoBehaviour
 {
@@ -199,6 +200,7 @@ public class PlayfabManager : MonoBehaviour
 
     public void GetLeaderboardAroundPlayer()
     {
+        loadingLeaderBoardText.text = "Loading leaderboard - current week";
         firstPosName.text = "Loading...";
         firstPosPoint.text = pointPlayer[0].ToString();
         secondPosName.text = "Loading...";
@@ -257,6 +259,8 @@ public class PlayfabManager : MonoBehaviour
             fifthPos.text = tablePos[index].ToString();
             fifthPosName.text = namePlayer[index];
             fifthPosPoint.text = pointPlayer[index++].ToString();
+
+            loadingLeaderBoardText.text = "Leaderboard - current week";
 
             if (curPlayerIndex == 0)
             {
@@ -553,6 +557,7 @@ public class PlayfabManager : MonoBehaviour
 
     public void GetAllTimeLeaderboardAroundPlayer()
     {
+        loadingLeaderBoardText.text = "Loading All time leaderboard";
         firstPosName.text = "Loading...";
         firstPosPoint.text = pointPlayer[0].ToString();
         secondPosName.text = "Loading...";
@@ -611,38 +616,40 @@ public class PlayfabManager : MonoBehaviour
             fifthPos.text = tablePos[index].ToString();
             fifthPosName.text = namePlayer[index];
             fifthPosPoint.text = pointPlayer[index++].ToString();
+            
+            loadingLeaderBoardText.text = "Leaderboard - ALl Time";
 
             if (curPlayerIndex == 0)
             {
-                Debug.Log("I'm here 0");
+                //Debug.Log("I'm here 0");
                 firstPos.color = Color.yellow;
                 firstPosName.color = Color.yellow;
                 firstPosPoint.color = Color.yellow;
             }
             else if (curPlayerIndex == 1)
             {
-                Debug.Log("I'm here 1");
+                //Debug.Log("I'm here 1");
                 secondPos.color = Color.yellow;
                 secondPosName.color = Color.yellow;
                 secondPosPoint.color = Color.yellow;
             }
             else if (curPlayerIndex == 2)
             {
-                Debug.Log("I'm here 2");
+                //Debug.Log("I'm here 2");
                 thirdPos.color = Color.yellow;
                 thirdPosName.color = Color.yellow;
                 thirdPosPoint.color = Color.yellow;
             }
             else if (curPlayerIndex == 3)
             {
-                Debug.Log("I'm here 3");
+                //Debug.Log("I'm here 3");
                 fourthPos.color = Color.yellow;
                 fourthPosName.color = Color.yellow;
                 fourthPosPoint.color = Color.yellow;
             }
             else if (curPlayerIndex == 4)
             {
-                Debug.Log("I'm here 4");
+                //Debug.Log("I'm here 4");
                 fifthPos.color = Color.yellow;
                 fifthPosName.color = Color.yellow;
                 fifthPosPoint.color = Color.yellow;

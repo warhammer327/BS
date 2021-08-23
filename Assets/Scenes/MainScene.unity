@@ -8458,7 +8458,7 @@ RectTransform:
   m_GameObject: {fileID: 769523734}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.279775, y: 1, z: 1}
   m_Children:
   - {fileID: 1088504454}
   m_Father: {fileID: 1521154932}
@@ -11030,7 +11030,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tap to Switch Leaderboard
+  m_text: Tap here to Switch Leaderboard
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
   m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
@@ -11039,8 +11039,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4294967040
+  m_fontColor: {r: 0, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -11057,10 +11057,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70
+  m_fontSize: 54.85
   m_fontSizeBase: 70
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 16
@@ -12555,7 +12555,7 @@ MonoBehaviour:
   statusPanel: {fileID: 1796789907}
   loginPanel: {fileID: 1466495281}
   loadingPanelText: {fileID: 184152272}
-  profilePanel: {fileID: 0}
+  profilePanel: {fileID: 1196764625}
   menuAnimSwitch: 0
 --- !u!4 &1246153452
 Transform:
@@ -17075,7 +17075,7 @@ GameObject:
   - component: {fileID: 1692823956}
   - component: {fileID: 1692823955}
   m_Layer: 5
-  m_Name: Rules
+  m_Name: Profile Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17120,26 +17120,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '# Top three from the leaderboard will get reward. Amount will be BDT 50,
-    30, 20 for first, second and third position respectivley.
-
-
-    # Rewards will
-    be given out each week
-
-
-    #  To be eligible for weekly reward you will have
-    to register a valid account number
-
-
-    # You can update number from the settings
-    option
-
-
-    # For each right answer you will get 10 point and tenth of the remaining
-    time will be added as bonus
-
-'
+  m_text: "Profile is under construction... \nSorry for inconvenience...  :( "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -17166,14 +17147,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 52
+  m_fontSize: 72
   m_fontSizeBase: 52
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 17
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 1

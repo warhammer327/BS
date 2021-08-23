@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class AnimationManager : MonoBehaviour
 {
+
     // Start is called before the first frame update
     public GamePlay gamePlay;
     public PlayfabManager playfabManager;
@@ -31,6 +32,9 @@ public class AnimationManager : MonoBehaviour
     private float duration = 0.5f;
     public bool menuAnimSwitch;
 
+    /*
+    ##########rules panel == profile panel##########
+    */
     private void Start()
     {
         menuAnimSwitch = false;
